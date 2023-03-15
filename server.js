@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/productos/:id', (req, res) => {
-  //para jalar el url
+  // para jalar el url
   //res.send(req.params["id"])
   const id= req.params["id"]
   pool.query('SELECT * FROM productos WHERE idcategoria= ?', [id],(err, results, fields) => {
