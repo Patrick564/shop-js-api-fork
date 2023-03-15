@@ -13,4 +13,4 @@ pool.on('error', (err) => {
   console.log('error at connecting to db')
 })
 
-module.exports = pool
+module.exports = {pool}

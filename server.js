@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mysql = require('mysql2')
 
-const pool = require('./src/db/connection.js')
+const {pool} = require('./src/db/connection.js')
 
 const app = express()
 
