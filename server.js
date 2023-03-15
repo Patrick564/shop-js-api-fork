@@ -36,14 +36,18 @@ app.get('/destinos', async (req, res) => {
 })
 
 app.get('/categoria-dos', (req, res) => {
-  res.send("hello")
-})
-
-app.get('/categorias', (req, res) => {
-  conn.query('SELECT * FROM categorias', (err, results, fields) => {
+  conn.query('SELECT * FROM categoriados', (err, results, fields) => {
     if (err) console.log(err)
 
-    res.json({ 'categorias': results })
+    res.json({ 'categoriados': results })
+  })
+})
+
+app.get('/categoria', (req, res) => {
+  conn.query('SELECT * FROM categoria', (err, results, fields) => {
+    if (err) console.log(err)
+
+    res.json({ 'categoria': results })
   })
 })
 
