@@ -35,6 +35,14 @@ app.get('/destinos', async (req, res) => {
   })
 })
 
+app.get('/categoria', (req, res) => {
+  pool.query('SELECT * FROM categoria', (err, results, fields) => {
+    if (err) console.log(err)
+
+    res.json({ 'categoria': results })
+  })
+})
+
 app.get('/categoria-dos', (req, res) => {
   pool.query('SELECT * FROM categoriados', (err, results, fields) => {
     if (err) console.log(err)
@@ -43,13 +51,9 @@ app.get('/categoria-dos', (req, res) => {
   })
 })
 
-app.get('/categoria', (req, res) => {
-  pool.query('SELECT * FROM categoria', (err, results, fields) => {
-    if (err) console.log(err)
 
-    res.json({ 'categoria': results })
-  })
-})
+
+
 
 app.listen(process.env.PORT, () => {
   console.log("server Start")
