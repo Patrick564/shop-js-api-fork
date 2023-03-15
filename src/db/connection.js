@@ -1,11 +1,12 @@
+require('dotenv').config()
 const mysql = require('mysql2')
 
 const pool = mysql.createConnection({
-  host: 'containers-us-west-187.railway.app',
-  user: 'root',
-  port: 6318,
-  password: 'WXmV1nUCekSbDetn5L4P',
-  database: 'railway'
+  host: process.env.DB_HOST ,
+  user: process.env.DB_USER,
+  port: process.env.PORT,
+  password:process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE
 })
 
 pool.on('error', (err) => {
