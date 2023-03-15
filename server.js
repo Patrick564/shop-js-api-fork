@@ -52,5 +52,5 @@ app.get('/categoria', (req, res) => {
 })
 
 app.listen(process.env.PORT, () => {
-  console.log("server start")
+  console.log("server Start")
 })
