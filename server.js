@@ -1,6 +1,7 @@
 
 require('dotenv').config()
 const express = require('express')
+//cors
 const cors=require('cors')
 
 const pool = require('./src/db/connection.js')
