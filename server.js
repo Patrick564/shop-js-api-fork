@@ -22,9 +22,9 @@ app.get('/productos/:id', (req, res) => {
 })
 
 app.get('/lugares', async (req, res) => {
-  conn.query('SELECT * FROM lugares'), (err, results, fields) => {
+  conn.query('SELECT * FROM lugares', (err, results, fields) => {
     res.json({ 'lugares': results })
-  }
+  })
 })
 
 app.get('/destinos', async (req, res) => {
@@ -40,7 +40,11 @@ app.get('/categoria-dos', (req, res) => {
 })
 
 app.get('/categorias', (req, res) => {
-  res.send("hello")
+  conn.query('SELECT * FROM categorias', (err, results, fields) => {
+    if (err) console.log(err)
+
+    res.json({ 'categorias': results })
+  })
 })
 
 app.listen("8000", () => {
