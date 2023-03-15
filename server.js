@@ -1,10 +1,12 @@
 require('dotenv').config()
 const express = require('express')
-const mysql = require('mysql2')
 
-const {pool} = require('./src/db/connection.js')
+const pool = require('./src/db/connection.js')
+const logger = require('./src/logger/logger.js')
 
 const app = express()
+
+app.use(logger)
 
 app.get('/', (req, res) => {
   res.send("hello")
@@ -45,5 +47,5 @@ app.get('/categoria', (req, res) => {
 })
 
 app.listen(process.env.PORT, () => {
-  console.log("works")
+  console.log("server start")
 })
