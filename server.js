@@ -1,5 +1,7 @@
+
 require('dotenv').config()
 const express = require('express')
+const cors=require('cors')
 
 const pool = require('./src/db/connection.js')
 const logger = require('./src/logger/logger.js')
@@ -7,6 +9,7 @@ const logger = require('./src/logger/logger.js')
 const app = express()
 
 app.use(logger)
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.send("hello")
