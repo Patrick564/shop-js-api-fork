@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
   res.send("hello")
 })
 
-app.get('/productos/:id', (req, res) => {
+app.post('/productos/:id', (req, res) => {
   //para jalar el url
   //res.send(req.params["id"])
   const id= req.params["id"]
