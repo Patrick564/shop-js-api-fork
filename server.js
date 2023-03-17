@@ -28,7 +28,9 @@ app.get('/productos/:id', (req, res) => {
 app.post('/productos',(req,res)=>{
   const idcategoria= req.body.idcategoria;
   pool.query('SELECT * FROM productos WHERE idcategoria= ?', [idcategoria],(err, results, fields) => {
-    res.json({ 'productos': results })
+    res.send({
+      'idcategoria':idcategoria
+    })
   })
 })
 
