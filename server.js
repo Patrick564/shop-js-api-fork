@@ -16,11 +16,18 @@ app.get('/', (req, res) => {
   res.send("hello")
 })
 
-app.post('/productos/:id', (req, res) => {
+app.get('/productos/:id', (req, res) => {
   //para jalar el url
   //res.send(req.params["id"])
   const id= req.params["id"]
   pool.query('SELECT * FROM productos WHERE idcategoria= ?', [id],(err, results, fields) => {
+    res.json({ 'productos': results })
+  })
+})
+
+app.post('/productos',(req,res)=>{
+  const idcategoria= req.body.idcategoria;
+  pool.query('SELECT * FROM productos WHERE idcategoria= ?', [idcategoria],(err, results, fields) => {
     res.json({ 'productos': results })
   })
 })
