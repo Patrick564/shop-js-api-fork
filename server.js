@@ -27,10 +27,10 @@ app.get('/productos/:id', (req, res) => {
 
 app.post('/productos',(req,res)=>{
   const idcategoria= req.body.idcategoria;
-  pool.query('SELECT * FROM productos WHERE idcategoria= ?', [idcategoria],(err, results, fields) => {
-    res.send({
-      'idcategoria':idcategoria
-    })
+  const [rows] = pool.query('SELECT * FROM productos WHERE idcategoria= ?', [idcategoria],(err, results, fields) => {
+    if([rows] > 0){
+      res.json({ 'productos': results })
+    }
   })
 })
 
@@ -62,6 +62,19 @@ app.get('/categoria-dos', (req, res) => {
 
     res.json({ 'categoriados': results })
   })
+})
+
+app.post('/categoriainsert',(req,res)=>{
+  const nombre= req.body.nombre;
+  const descripcion=req.body.descripcion;
+  const marcas= req.body.marcas;
+
+  pool.query("INSERT INTO categoriados (nombre,descripcion,marcas) VALUES (?,?,?)",
+  [nombre],[descripcion],[marcas] ,error=>{
+    if(error) throw error;
+    res.send('categoria agregada')
+  })
+  
 })
 
 
