@@ -1,9 +1,11 @@
-require('dotenv').config()
-const express = require('express')
-const cors = require('cors')
+import cors from 'cors'
+import express from 'express'
+import { config } from 'dotenv'
 
-const pool = require('./src/db/connection.js')
-const logger = require('./src/logger/logger.js')
+import { pool } from './src/db/connection.js'
+import { logApp as logger } from './src/logger/logger.js'
+
+config()
 
 const app = express()
 
