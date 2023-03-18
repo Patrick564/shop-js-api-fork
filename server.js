@@ -64,21 +64,18 @@ app.get('/categoria-dos', (req, res) => {
   })
 })
 
-app.post('/categoriainsert',(req,res)=>{
+app.post('/categoria-insert',(req,res)=>{
   const nombre= req.body.nombre;
   const descripcion=req.body.descripcion;
   const marcas= req.body.marcas;
 
   pool.query("INSERT INTO categoriados (nombre,descripcion,marcas) VALUES (?,?,?)",
-  [nombre],[descripcion],[marcas] ,error=>{
-    if(error) throw error;
+  [nombre],[descripcion],[marcas] ,(err, results, fields) =>{
+    if(err) throw err;
     res.send('categoria agregada')
   })
   
 })
-
-
-
 
 
 app.listen(process.env.PORT, () => {
