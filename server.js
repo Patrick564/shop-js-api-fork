@@ -62,7 +62,7 @@ app.post('/categoriasdos', async (req, res) => {
         console.log(err)
         res.status(402).json({ 'error': err.cause })
       }
-      
+      //
       res.status(201).json({ 'status': true, 'id': results['id'] })
     })
 })
