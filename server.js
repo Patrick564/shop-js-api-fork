@@ -9,6 +9,7 @@ config()
 
 const app = express()
 
+app.use(express.json())
 app.use(logger)
 app.use(cors())
 
@@ -43,16 +44,27 @@ app.get('/categorias', (req, res) => {
   })
 })
 
-app.post('/categorias', async (req, res) => {
-  // ejemplo
-  pool.execute('INSERT', (err, results, fields) => {
-    if (err) {
-      console.log(err)
-      res.status(402).json({ 'error': err.cause })
-    }
+// categorias-dos route
+app.get('/categoriasdos', (req, res) => {
+  pool.query('SELECT * FROM categoriados', (err, results, fields) => {
+    if (err) console.log(err)
 
-    res.status(201).json({ 'status': true, 'id': results['id'] })
+    res.json({ 'categoriasdos': results })
   })
+})
+
+app.post('/categoriasdos', async (req, res) => {
+  // ejemplo  
+  const { nombre, descripcion, marcas } = req.body
+  pool.execute('INSERT INTO categoriados (nombre,descripcion,marcas) VALUES (?,?,?)',
+    [nombre, descripcion, marcas], (err, results, fields) => {
+      if (err) {
+        console.log(err)
+        res.status(402).json({ 'error': err.cause })
+      }
+      
+      res.status(201).json({ 'status': true, 'id': results['id'] })
+    })
 })
 
 app.patch('/categorias/:id/update', (req, res) => {
@@ -82,26 +94,7 @@ app.get('/productos/:id', async (req, res) => {
   })
 })
 
-app.get('/categoria-dos', (req, res) => {
-  pool.query('SELECT * FROM categoriados', (err, results, fields) => {
-    if (err) console.log(err)
 
-    res.json({ 'categoriados': results })
-  })
-})
-
-app.post('/categoria-insert', (req, res) => {
-  const nombre = req.body.nombre
-  const descripcion = req.body.descripcion
-  const marcas = req.body.marcas
-
-  pool.query("INSERT INTO categoriados (nombre,descripcion,marcas) VALUES (?,?,?)",
-    [nombre], [descripcion], [marcas], (err, results, fields) => {
-      if (err) throw err
-      res.send('categoria agregada')
-    })
-
-})
 
 app.listen(process.env.PORT, () => {
   console.log("server Start")
