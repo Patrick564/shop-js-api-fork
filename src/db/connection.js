@@ -1,7 +1,9 @@
-require('dotenv').config()
-const mysql = require('mysql2')
+import { config } from 'dotenv'
+import { createConnection } from 'mysql2'
 
-const pool = mysql.createConnection({
+config()
+
+const pool = createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   port: process.env.DB_PORT,
@@ -18,4 +20,4 @@ pool.on('error', (err) => {
   console.log('error at connecting to db')
 })
 
-module.exports = pool
+export { pool }
