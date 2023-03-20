@@ -9,7 +9,7 @@ config()
 
 const app = express()
 
-// app.use(express.json())
+app.use(express.json())
 app.use(logger)
 app.use(cors())
 
@@ -53,7 +53,7 @@ app.get('/categoriados', (req, res) => {
   })
 })
 
-app.post('/categoriasdos', async (req, res) => {
+app.post('/categoriados', async (req, res) => {
   // ejemplo  
   const { nombre, descripcion, marcas } = req.body
   pool.execute('INSERT INTO categoriados (nombre,descripcion,marcas) VALUES (?,?,?)',
