@@ -11,7 +11,7 @@ const app = express()
 
 app.use(express.json())
 app.use(logger)
-app.use(cors())
+app.use(cors({origin:'*'}))
 
 app.get('/', (req, res) => {
   res.send("hello")
