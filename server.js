@@ -65,7 +65,7 @@ app.post('/categoriados', async (req, res) => {
         res.status(402).json({ 'error': err.cause })
       }
       
-      res.status(201).json({ 'status': true, 'id': results['id'] })
+      res.status(201).json({ 'status': true, 'id': results.insertId })
     })
 })
 
