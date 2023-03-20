@@ -54,7 +54,7 @@ app.get('/categoriados', (req, res) => {
 })
 
 app.post('/categoriados', async (req, res) => {
-  // ejemplo  
+  // Ejemplo de insert  
   const {nombre,descripcion,marcas} = req.body
   
   //res.json({nombre,descripcion,marcas})
