@@ -55,16 +55,16 @@ app.get('/categoriados', (req, res) => {
 
 app.post('/categoriados', async (req, res) => {
   // ejemplo  
-  const nombre = req.body
-  const descripcion=req.body
-  const marcas=req.body
+  const {nombre,descripcion,marcas} = req.body
+  
+  //res.json({nombre,descripcion,marcas})
   pool.execute('INSERT INTO categoriados (nombre,descripcion,marcas) VALUES (?,?,?)',
-    nombre, descripcion, marcas, (err, results, fields) => {
+    [nombre, descripcion, marcas], (err, results, fields) => {
       if (err) {
         console.log(err)
         res.status(402).json({ 'error': err.cause })
       }
-      //
+      
       res.status(201).json({ 'status': true, 'id': results['id'] })
     })
 })
