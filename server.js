@@ -9,7 +9,7 @@ config()
 
 const app = express()
 
-//app.use(express.json())
+// app.use(express.json())
 app.use(logger)
 app.use(cors())
 
@@ -45,11 +45,11 @@ app.get('/categorias', (req, res) => {
 })
 
 // categorias-dos route
-app.get('/categoriasdos', (req, res) => {
+app.get('/categoriados', (req, res) => {
   pool.query('SELECT * FROM categoriados', (err, results, fields) => {
     if (err) console.log(err)
 
-    res.json({ 'categoriasdos': results })
+    res.json({ 'categoriados': results })
   })
 })
 
