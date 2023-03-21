@@ -57,7 +57,13 @@ app.post('/categoriados', async (req, res) => {
   // Ejemplo de insert  
   const {nombre,descripcion,marcas} = req.body
   
-  //res.json({nombre,descripcion,marcas})
+  console.log(req.body)
+  if(nombre === "" || descripcion === "" || marcas===""){
+    res.json({
+      "error":"campos vacios"
+    })
+
+  }
   pool.execute('INSERT INTO categoriados (nombre,descripcion,marcas) VALUES (?,?,?)',
     [nombre, descripcion, marcas], (err, results, fields) => {
       if (err) {
